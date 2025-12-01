@@ -103,13 +103,28 @@ def download_keyword_dataset():
     # Load Inspec dataset
     dataset = load_dataset("midas/inspec", "extraction")
 
+    # Check what columns are available
+    print(f"Available columns: {dataset['train'].column_names}")
+
     # Process the dataset
     def process_keywords(example):
+        # Handle different possible column names
+        kw_field = None
+        if 'extractive_keyphrases' in example:
+            kw_field = 'extractive_keyphrases'
+        elif 'keyphrases' in example:
+            kw_field = 'keyphrases'
+        elif 'keywords' in example:
+            kw_field = 'keywords'
+
         # Join keywords into a semicolon-separated string
-        if 'keywords' in example and example['keywords']:
-            example['keywords_str'] = "; ".join(example['keywords'])
+        if kw_field and example[kw_field]:
+            keywords_list = example[kw_field]
+            example['keywords_str'] = "; ".join(keywords_list)
+            example['keywords_list'] = keywords_list
         else:
             example['keywords_str'] = ""
+            example['keywords_list'] = []
         return example
 
     # Process all splits
@@ -122,8 +137,14 @@ def download_keyword_dataset():
     val_df = pd.DataFrame(val_data)
     test_df = pd.DataFrame(test_data)
 
-    # Select relevant columns
-    columns_to_keep = ['document', 'keywords_str', 'keywords']
+    # Select relevant columns (check which exist)
+    available_cols = train_df.columns.tolist()
+    columns_to_keep = ['document', 'keywords_str']
+
+    # Add keywords_list if it exists
+    if 'keywords_list' in available_cols:
+        columns_to_keep.append('keywords_list')
+
     train_df = train_df[columns_to_keep]
     val_df = val_df[columns_to_keep]
     test_df = test_df[columns_to_keep]
@@ -140,10 +161,12 @@ def download_keyword_dataset():
     print(f"  - Saved to: {DATA_DIR}")
 
     # Print statistics
-    avg_keywords = train_df['keywords'].apply(len).mean()
+    if 'keywords_list' in train_df.columns:
+        avg_keywords = train_df['keywords_list'].apply(len).mean()
+        print(f"\nDataset Statistics (Train):")
+        print(f"  - Avg keywords per document: {avg_keywords:.2f}")
+
     avg_doc_length = train_df['document'].apply(lambda x: len(x.split())).mean()
-    print(f"\nDataset Statistics (Train):")
-    print(f"  - Avg keywords per document: {avg_keywords:.2f}")
     print(f"  - Avg document length: {avg_doc_length:.2f} words")
 
     return train_df, val_df, test_df

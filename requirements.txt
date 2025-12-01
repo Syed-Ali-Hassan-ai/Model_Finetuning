@@ -1,0 +1,50 @@
+# Core ML Libraries
+torch==2.1.2
+transformers==4.36.2
+datasets==2.16.1
+peft==0.7.1
+bitsandbytes==0.41.3
+accelerate==0.25.0
+
+# Training & Evaluation
+scikit-learn==1.4.0
+numpy==1.26.3
+pandas==2.1.4
+matplotlib==3.8.2
+seaborn==0.13.1
+tqdm==4.66.1
+
+# Metrics
+rouge-score==0.1.2
+sacrebleu==2.4.0
+evaluate==0.4.1
+
+# API & Deployment
+fastapi==0.108.0
+uvicorn[standard]==0.25.0
+pydantic==2.5.3
+python-multipart==0.0.6
+pyngrok==7.0.5
+
+# UI
+streamlit==1.29.0
+gradio==4.14.0
+
+# MCP Integration
+mcp==0.9.0
+httpx==0.26.0
+
+# Jupyter & Notebooks
+jupyter==1.0.0
+ipykernel==6.29.0
+ipywidgets==8.1.1
+
+# Utilities
+python-dotenv==1.0.0
+requests==2.31.0
+aiofiles==23.2.1
+Pillow==10.2.0
+
+# Testing
+pytest==7.4.4
+pytest-asyncio==0.23.3

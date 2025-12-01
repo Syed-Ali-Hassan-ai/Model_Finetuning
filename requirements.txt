@@ -1,50 +1,50 @@
 # Core ML Libraries
-torch==2.1.2
-transformers==4.36.2
-datasets==2.16.1
-peft==0.7.1
-bitsandbytes==0.41.3
-accelerate==0.25.0
+torch==2.5.1
+transformers==4.46.0
+datasets==3.1.0
+peft==0.13.2
+bitsandbytes==0.45.0
+accelerate==1.1.1
 
 # Training & Evaluation
-scikit-learn==1.4.0
-numpy==1.26.3
-pandas==2.1.4
-matplotlib==3.8.2
-seaborn==0.13.1
-tqdm==4.66.1
+scikit-learn==1.5.2
+numpy==1.26.4
+pandas==2.2.3
+matplotlib==3.9.2
+seaborn==0.13.2
+tqdm==4.67.1
 
 # Metrics
 rouge-score==0.1.2
-sacrebleu==2.4.0
-evaluate==0.4.1
+sacrebleu==2.4.3
+evaluate==0.4.3
 
 # API & Deployment
-fastapi==0.108.0
-uvicorn[standard]==0.25.0
-pydantic==2.5.3
-python-multipart==0.0.6
-pyngrok==7.0.5
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+pydantic==2.10.3
+python-multipart==0.0.18
+pyngrok==7.2.2
 
 # UI
-streamlit==1.29.0
-gradio==4.14.0
+streamlit==1.40.2
+gradio==5.7.1
+plotly==5.24.1
 
 # MCP Integration
-mcp==0.9.0
-httpx==0.26.0
+httpx==0.28.1
 
 # Jupyter & Notebooks
-jupyter==1.0.0
-ipykernel==6.29.0
-ipywidgets==8.1.1
+jupyter==1.1.1
+ipykernel==6.29.5
+ipywidgets==8.1.5
 
 # Utilities
-python-dotenv==1.0.0
-requests==2.31.0
-aiofiles==23.2.1
-Pillow==10.2.0
+python-dotenv==1.0.1
+requests==2.32.3
+aiofiles==24.1.0
+Pillow==11.0.0
 
 # Testing
-pytest==7.4.4
-pytest-asyncio==0.23.3
+pytest==8.3.4
+pytest-asyncio==0.24.0
